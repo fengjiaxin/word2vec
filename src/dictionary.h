@@ -39,7 +39,6 @@ protected:
     int64_t ntokens_;
 
 public:
-    static const std::string EOS;
     explicit Dictionary(std::shared_ptr<Args>);
     explicit Dictionary(std::shared_ptr<Args>, std::istream&);
     int32_t nwords() const;

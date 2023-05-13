@@ -35,4 +35,7 @@ add_library(word2vec-static STATIC ${SOURCE_FILES} ${HEADER_FILES})
 
 add_executable(word2vec src/main.cpp)
 target_link_libraries(word2vec word2vec-static)
-#add_executable(test_alias src/test_alias.cpp)
+
+
+#add_executable(test_alias test/test_alias.cpp)
+#add_executable(test_read test/testRead.cpp)

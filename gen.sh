@@ -3,4 +3,4 @@ mkdir build
 cd build
 cmake ..
 make
-cp word2vec ../
+

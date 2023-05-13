@@ -14,8 +14,6 @@
 
 namespace word2vec {
 
-const std::string Dictionary::EOS = "</s>";
-
 Dictionary::Dictionary(std::shared_ptr<Args> args)
         : args_(args),
           word2int_(MAX_VOCAB_SIZE, -1),
@@ -101,19 +99,8 @@ bool Dictionary::readWord(std::istream& in, std::string& word) const {
     std::streambuf& sb = *in.rdbuf();
     word.clear();
     while ((c = sb.sbumpc()) != EOF) { // sb.sbumpc() 读取一个字符，读取指针移动
-        if (c == ' ' || c == '\n' || c == '\r' || c == '\t' || c == '\v' ||
-            c == '\f' || c == '\0') {
-            if (word.empty()) {
-                if (c == '\n') {
-                    word += EOS;
-                    return true;
-                }
-                continue;
-            } else {
-                if (c == '\n')
-                    sb.sungetc();
-                return true;
-            }
+        if (c == ' ' || c == '\n') {
+            return true;
         }
         word.push_back(c);
     }
@@ -213,7 +200,7 @@ int32_t Dictionary::getLine(
 
         ntokens++;
         words.push_back(wid);
-        if (ntokens > MAX_LINE_SIZE || token == EOS) {
+        if (ntokens > MAX_LINE_SIZE) {
             break;
         }
     }

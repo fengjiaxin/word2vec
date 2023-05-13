@@ -69,9 +69,10 @@ void Vector::addRow(const Matrix& A, int64_t i) {
 
 std::ostream& operator<<(std::ostream& os, const Vector& v) {
     os << std::setprecision(5);
-    for (int64_t j = 0; j < v.size(); j++) {
+    for (int64_t j = 0; j < v.size() - 1; j++) {
         os << v[j] << ' ';
     }
+    os << v[v.size() - 1];
     return os;
 }
 
